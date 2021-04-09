@@ -53,7 +53,7 @@ public class PlayerMoveController : MonoBehaviour
                 // Assign the value true
                 // To the CarController-Component
                 // On the car-GameObject
-                MarcCarController carController = car.GetComponent<MarcCarController>();
+                CarController carController = car.GetComponent<CarController>();
                 carController.enabled = true;
                 carController.driver = this.gameObject;
                 

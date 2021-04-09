@@ -612,6 +612,8 @@ MonoBehaviour:
   backwardKey: 115
   leftKey: 97
   rightKey: 100
+  exitKey: 102
+  driver: {fileID: 0}
 --- !u!212 &1333536517
 SpriteRenderer:
   m_ObjectHideFlags: 0
