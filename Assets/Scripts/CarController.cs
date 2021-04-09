@@ -9,22 +9,18 @@ public class CarController : MonoBehaviour
     [Tooltip("Rotation Speed In Degrees per Second")]
     public float rotationSpeed = 180;
 
-    public KeyCode forwardKey;
-    public KeyCode backwardKey;
-    public KeyCode leftKey;
-    public KeyCode rightKey;
-    public KeyCode exitKey;
-
     public GameObject driver;
 
     // Methods describe what a class CAN DO
     void Update()
     {
-        bool forward = Input.GetKey(forwardKey);
-        bool backward = Input.GetKey(backwardKey);
-        bool left = Input.GetKey(leftKey);
-        bool right = Input.GetKey(rightKey);
-        bool exit = Input.GetKeyDown(exitKey);
+        PlayerInput playerInput = driver.GetComponent<PlayerInput>();
+        
+        bool forward = Input.GetKey(playerInput.forwardKey);
+        bool backward = Input.GetKey(playerInput.backwardKey);
+        bool left = Input.GetKey(playerInput.leftKey);
+        bool right = Input.GetKey(playerInput.rightKey);
+        bool exit = Input.GetKeyDown(playerInput.enterKey);
         
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         if (forward)

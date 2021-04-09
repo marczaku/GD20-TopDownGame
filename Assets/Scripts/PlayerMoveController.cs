@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class PlayerMoveController : MonoBehaviour
@@ -38,19 +39,21 @@ public class PlayerMoveController : MonoBehaviour
 
         if (enter)
         {
-            // Find the car-GameObject through its name "Car"
-            GameObject car = GameObject.Find("Car");
+            // This is difficult code, but it will give you the closest car:
+            CarController closestCar = Resources.FindObjectsOfTypeAll<CarController>()
+                .OrderBy((a) => Vector3.Distance(this.transform.position, a.transform.position))
+                .First();
 
             // Get the distance between the car's position and this' (the Human's) position
-            float distance = Vector3.Distance(car.transform.position, this.transform.position);
+            float distance = Vector3.Distance(closestCar.transform.position, this.transform.position);
             
             // Only if the distance is smaller than the threshold...
-            if (distance < 2f)
+            if (distance < 2f) // TODO: ALSO CHECK, THAT NOBODY ELSE IS IN THE CAR
             {
                 // Assign the value true
                 // To the CarController-Component
                 // On the car-GameObject
-                CarController carController = car.GetComponent<CarController>();
+                CarController carController = closestCar.GetComponent<CarController>();
                 carController.enabled = true;
                 carController.driver = this.gameObject;
                 
