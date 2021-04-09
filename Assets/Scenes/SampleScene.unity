@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 494232412}
   - component: {fileID: 494232411}
   - component: {fileID: 494232414}
+  - component: {fileID: 494232415}
   m_Layer: 0
   m_Name: Human
   m_TagString: Untagged
@@ -235,6 +236,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 4
+  playerInput: {fileID: 494232415}
+--- !u!114 &494232415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494232410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db48d3bb09f84345a5bcccdd80dcb47c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   forwardKey: 119
   backwardKey: 115
   leftKey: 97
@@ -403,11 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 4
-  forwardKey: 117
-  backwardKey: 106
-  leftKey: 104
-  rightKey: 107
-  enterKey: 0
+  playerInput: {fileID: 0}
 --- !u!212 &827940801
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -569,11 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 4
-  forwardKey: 117
-  backwardKey: 106
-  leftKey: 104
-  rightKey: 107
-  enterKey: 0
+  playerInput: {fileID: 0}
 --- !u!1 &1333536515
 GameObject:
   m_ObjectHideFlags: 0

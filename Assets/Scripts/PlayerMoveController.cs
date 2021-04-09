@@ -4,21 +4,18 @@ public class PlayerMoveController : MonoBehaviour
 {
     [Tooltip("Movement Speed In Meters per Second")]
     public float movementSpeed = 0.1f;
-
-    public KeyCode forwardKey;
-    public KeyCode backwardKey;
-    public KeyCode leftKey;
-    public KeyCode rightKey;
-    public KeyCode enterKey;
+    public PlayerInput playerInput;
 
     void Update()
     {
-        bool forward = Input.GetKey(forwardKey);
-        bool backward = Input.GetKey(backwardKey);
-        bool left = Input.GetKey(leftKey);
-        bool right = Input.GetKey(rightKey);
-        bool enter = Input.GetKeyDown(enterKey);
-        
+        // this.playerInput accesses our own class' playerInput-field.
+        // with the '.' we say that we want to access that field's class' contents.
+        // with forwardKey, we say that we want to access the field forwardKey of that class.
+        bool forward = Input.GetKey(this.playerInput.forwardKey);
+        bool backward = Input.GetKey(playerInput.backwardKey);
+        bool left = Input.GetKey(playerInput.leftKey);
+        bool right = Input.GetKey(playerInput.rightKey);
+        bool enter = Input.GetKeyDown(playerInput.enterKey);
 
         // If the Forward Key is Pressed, MOVE the TRANSFORM in the UP-direction
         // scaled by the MOVEMENT SPEED and the DELTA TIME (the time that has passed)
