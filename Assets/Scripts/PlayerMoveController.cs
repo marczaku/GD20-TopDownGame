@@ -9,6 +9,7 @@ public class PlayerMoveController : MonoBehaviour
     public KeyCode backwardKey;
     public KeyCode leftKey;
     public KeyCode rightKey;
+    public KeyCode enterKey;
 
     void Update()
     {
@@ -16,34 +17,55 @@ public class PlayerMoveController : MonoBehaviour
         bool backward = Input.GetKey(backwardKey);
         bool left = Input.GetKey(leftKey);
         bool right = Input.GetKey(rightKey);
+        bool enter = Input.GetKeyDown(enterKey);
+        
 
         // If the Forward Key is Pressed, MOVE the TRANSFORM in the UP-direction
         // scaled by the MOVEMENT SPEED and the DELTA TIME (the time that has passed)
         if (forward)
         {
-            // Use transform.Translate, if you want to move a transform
-            transform.Translate(Vector3.up * (movementSpeed * Time.deltaTime));
+            this.transform.Translate(Vector3.up * (movementSpeed * Time.deltaTime));
         }
         if (backward)
         {
-            transform.Translate(Vector3.down * (movementSpeed * Time.deltaTime));
+            this.transform.Translate(Vector3.down * (movementSpeed * Time.deltaTime));
         }
         if (left)
         {
-            transform.Translate(Vector3.left * (movementSpeed * Time.deltaTime));
+            this.transform.Translate(Vector3.left * (movementSpeed * Time.deltaTime));
         }
         if (right)
         {
-            transform.Translate(Vector3.right * (movementSpeed * Time.deltaTime));
+            this.transform.Translate(Vector3.right * (movementSpeed * Time.deltaTime));
+        }
+
+        if (enter)
+        {
+            // Find the car-GameObject through its name "Car"
+            GameObject car = GameObject.Find("Car");
+
+            // Get the distance between the car's position and this' (the Human's) position
+            float distance = Vector3.Distance(car.transform.position, this.transform.position);
+            
+            // Only if the distance is smaller than the threshold...
+            if (distance < 2f)
+            {
+                // Assign the value true
+                // To the CarController-Component
+                // On the car-GameObject
+                MarcCarController carController = car.GetComponent<MarcCarController>();
+                carController.enabled = true;
+                carController.driver = this.gameObject;
+                
+                // And disable this' (the Human's) game object
+                this.gameObject.SetActive(false);
+            }
+            
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        // Use transform.position, IF you want to set the position to a certain value
-        // For example: if you want the player to teleport
-        // Or to set a new Enemy's Position to its Spawn Point
-        transform.position = Vector3.zero;
+        this.transform.position = Vector3.zero;
     }
 }
